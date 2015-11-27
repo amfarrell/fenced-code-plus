@@ -5,6 +5,7 @@ from markdown.extensions import Extension
 from markdown.preprocessors import Preprocessor
 from markdown.extensions.codehilite import CodeHilite, CodeHiliteExtension, parse_hl_lines
 import re
+from collections import OrderedDict as odict
 
 class FencedCodePlusExtension(Extension):
 
@@ -19,11 +20,11 @@ class FencedCodePlusExtension(Extension):
 #To add an argument,
 #Add a regex to recognise that argument and it will get passed into kwargs within run(self, lines)
 PARAM_DEFAULTS = {'number': '0'}
-PARAM_REGEXES = {
-    'hl_lines': re.compile(r'''hl_lines=(?P<quot>"|')(?P<hl_lines>.*?)(?P=quot)'''),
-    'number': re.compile(r'''number=?(?P<number>.*?)?'''),
-    'path': re.compile(r'''path=(?P<quot>"|')(?P<path>.*?)(?P=quot)'''),
-}
+PARAM_REGEXES = odict(( #Ordered so that 'data-' attrs of html are in deterministic order.
+    ('hl_lines', re.compile(r'''hl_lines=(?P<quot>"|')(?P<hl_lines>.*?)(?P=quot)''')),
+    ('number', re.compile(r'''number=?(?P<number>\d*)?''')),
+    ('path', re.compile(r'''path=(?P<quot>"|')(?P<path>.*?)(?P=quot)''')),
+))
 
 
 DATA_TAG = ' data-{key}="{value}"'
@@ -73,7 +74,7 @@ class FencedBlockPreprocessor(Preprocessor):
                             raise Exception("{} needs an argument within \n{}".format(param, first_line))
                         data_tags.append(DATA_TAG.format(key=param, value=kwargs[param]))
                 lang = ''
-                if m.group('lang') and m.group('lang') not in PARAM_DEFAULTS:
+                if m.group('lang') and m.group('lang') not in PARAM_REGEXES:
                     lang = self.LANG_TAG.format(lang=m.group('lang'))
 
                 # If config is not empty, then the codehighlite extension
