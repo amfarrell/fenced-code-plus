@@ -6,7 +6,7 @@ from markdown.preprocessors import Preprocessor
 from markdown.extensions.codehilite import CodeHilite, CodeHiliteExtension, parse_hl_lines
 import re
 
-class FencedCodePlus(Extension):
+class FencedCodePlusExtension(Extension):
 
     def extendMarkdown(self, md, md_globals):
         """ Add FencedBlockPreprocessor to the Markdown instance. """
