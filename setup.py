@@ -31,4 +31,5 @@ setup(
     install_requires=['markdown>=2.6'],
     tests_require=['pytest',],
     cmdclass = {'test': PyTest},
+    download_url = "https://github.com/amfarrell/fenced-code-plus"
 )
