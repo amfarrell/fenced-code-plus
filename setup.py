@@ -26,10 +26,15 @@ class PyTest(TestCommand):
 
 setup(
     name='fenced_code_plus',
+    packages='fenced_code_plus',
+    description="A markdown extension for adding additional attributes to fenced code.",
+    author = "Andrew M. Farrell",
+    author_email = "amfarrell@mit.edu",
     version='0.1',
-    py_modules=['fenced_code_plus'],
+    py_modules=['fenced_code_plus.fenced_code_plus'],
     install_requires=['markdown>=2.6'],
     tests_require=['pytest',],
     cmdclass = {'test': PyTest},
-    download_url = "https://github.com/amfarrell/fenced-code-plus"
+    url = "https://github.com/amfarrell/fenced-code-plus",
+    keywords = ["code format", "fenced code", "markdown"],
 )
