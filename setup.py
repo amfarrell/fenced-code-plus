@@ -26,7 +26,7 @@ class PyTest(TestCommand):
 
 setup(
     name='fenced_code_plus',
-    packages='fenced_code_plus',
+    packages=['fenced_code_plus'],
     description="A markdown extension for adding additional attributes to fenced code.",
     author = "Andrew M. Farrell",
     author_email = "amfarrell@mit.edu",
