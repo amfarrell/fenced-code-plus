@@ -1,2 +1,4 @@
-from fenced_code_plus import FencedCodePlusExtension
-from fenced_code_plus import makeExtension
+from __future__ import absolute_import
+
+from fenced_code_plus.fenced_code_plus import FencedCodePlusExtension
+from fenced_code_plus.fenced_code_plus import makeExtension
