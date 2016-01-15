@@ -30,7 +30,7 @@ setup(
     description="A markdown extension for adding additional attributes to fenced code.",
     author = "Andrew M. Farrell",
     author_email = "amfarrell@mit.edu",
-    version='0.1.1',
+    version='0.1.2',
     py_modules=['fenced_code_plus.fenced_code_plus'],
     install_requires=['markdown>=2.6'],
     tests_require=['pytest',],
